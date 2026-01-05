@@ -1,104 +1,101 @@
-# AI Financial Risk Screener (PE-Grade)
+# 🔍 PE-Grade Financial Risk & Forensic Accounting Screener
 
-A professional-grade financial risk screening and forensic accounting tool designed for Private Equity (PE) investment teams. This system automates the triage of potential investment targets by analyzing multi-year financial statements and management commentary to identify elevated accounting, cash flow, and governance risks.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Forensic-Accounting](https://img.shields.io/badge/Focus-Forensic%20Accounting-red.svg)]()
 
----
-
-## 🎯 Strategic Objective
-
-In the due diligence process, time is the most valuable resource. This tool acts as a **first-pass risk filter**, allowing analysts to:
-- **Prioritize Diligence**: Focus manual deep-dives on "High Risk" targets first.
-- **Detect Forensic Red Flags**: Identify subtle accounting anomalies and governance issues that might be missed in a standard review.
-- **Standardize Risk Assessment**: Apply a consistent, data-driven risk framework across a large portfolio of potential targets.
+A professional-grade financial risk screening tool designed for **Private Equity (PE) Analysts** and **Forensic Accountants**. This system triages investment targets by analyzing earnings quality, working capital efficiency, and identifying "red flags" in financial disclosures using NLP.
 
 ---
 
-## 🔍 Core Analysis Dimensions
+## 💡 Core Value Proposition
 
-The system evaluates targets across three critical pillars:
+In Private Equity, the "Quality of Earnings" (QoE) is the most critical part of due diligence. This tool automates the initial risk triage, allowing teams to:
 
-### 1. Earnings Quality (EQ)
-- **Cash Conversion Analysis**: Compares Net Income against Operating Cash Flow (CFO) over multiple periods.
-- **Anomaly Detection**: Flags companies booking significant accounting profits without corresponding cash inflows, a classic signal of aggressive revenue recognition or capitalised expenses.
-
-### 2. Working Capital Efficiency (WC)
-- **Inventory & Receivables Tracking**: Monitors growth in working capital components relative to revenue growth.
-- **Cash Trap Identification**: Flags potential "cash traps" where inventory growth materially outpaces sales, signaling potential obsolescence or aggressive growth assumptions.
-
-### 3. Forensic NLP Risk Detection
-- **Governance & Audit Signals**: Scans management commentary and notes for high-risk language such as auditor resignations, restatements, or "going concern" uncertainties.
-- **Context-Aware Filtering**: Employs negation handling (e.g., "no material weaknesses identified") to minimize false positives and ensure high-signal output.
+| Feature | Benefit |
+| :--- | :--- |
+| **Earnings Quality Analysis** | Detects discrepancies between Net Income and Operating Cash Flow (CFO). |
+| **Forensic NLP Engine** | Scans disclosures for high-risk signals like auditor resignations or going concern issues. |
+| **Working Capital Triage** | Identifies inefficient inventory management or aggressive receivables booking. |
+| **Analyst-First Reporting** | Generates professional HTML summaries for Investment Committee (IC) prep. |
 
 ---
 
 ## 🛠 Technical Architecture
 
-The project follows a clean, modular architecture designed for professional environments:
-- **`src/models.py`**: Robust data models using Python dataclasses for financial metrics and scoring results.
-- **`src/scoring/`**: A weighted scoring engine that combines quantitative financial ratios with qualitative NLP signals.
-- **`src/nlp/`**: A regex-based risk detector with sophisticated negation logic.
-- **`src/reporting/`**: An analyst-friendly HTML report generator that provides a visual summary of the risk landscape.
+### 1. Forensic NLP Engine (`src/nlp/`)
+Detects qualitative risk signals in financial reports. It handles complex linguistic patterns and negation (e.g., "no material weakness" vs. "material weakness identified").
+
+### 2. PE Scoring Engine (`src/scoring/`)
+Calculates a proprietary **Risk Score (0-100)** based on:
+*   **Accrual Ratio**: High non-cash earnings signal potential manipulation.
+*   **Inventory/Revenue Delta**: Divergence between stock levels and sales growth.
+*   **Disclosure Risk**: Weighting of NLP-detected red flags.
+
+### 3. Reporting Pipeline (`src/reporting/`)
+Converts raw analysis into a structured **HTML Risk Report**, featuring color-coded severity levels and executive summaries.
 
 ---
 
 ## 📊 Project Structure
 
 ```text
-financial-statement-ai/
+/financial-statement-ai
+├── README.md               # Comprehensive project documentation
+├── LIMITATIONS.md          # Mature disclosure of system boundaries
+├── requirements.txt        # Python dependencies
+├── main.py                 # Main execution script
+├── setup_demo_data.py      # Utility to initialize demo environment
 ├── src/
-│   ├── ingestion/      # Data loading logic
-│   ├── nlp/            # Risk detection NLP engine
-│   ├── scoring/        # PE-grade scoring engine
-│   ├── reporting/      # HTML report generation
-│   ├── pipeline.py     # Main processing pipeline
-│   └── models.py       # Data models and metrics
-├── data/
-│   └── sector_config.yaml
-├── output/             # Generated reports (HTML)
-├── tests/              # Unit tests for core logic
-├── setup_demo_data.py  # Script to generate sample data
-├── main.py             # Entry point
-├── requirements.txt
-└── README.md
+│   ├── ingestion/          # Data loading and normalization
+│   ├── nlp/                # Forensic NLP and risk detection
+│   ├── scoring/            # Risk scoring engine
+│   ├── reporting/          # HTML report generation
+│   ├── models.py           # Financial data structures
+│   └── pipeline.py         # End-to-end execution logic
+└── tests/
+    └── test_pipeline.py    # Unit tests for scoring logic
 ```
 
 ---
 
-## 🚦 Quick Start
+## 🚦 Getting Started
+
+### Prerequisites
+*   Python 3.8+
+*   `pandas`, `jinja2`
 
 ### Installation
-```bash
-pip install -r requirements.txt
-```
-
-### Running the Screener
-1. Initialize demo data:
+1. Clone the repository:
    ```bash
-   python setup_demo_data.py
+   git clone https://github.com/gilhermanns/financial-risk-screener-or-forensic-accounting-ai.git
+   cd financial-risk-screener-or-forensic-accounting-ai
    ```
-2. Run the analysis:
+2. Install dependencies:
    ```bash
-   python main.py
+   pip install -r requirements.txt
    ```
-3. View the results:
-   Open `output/portfolio_summary.html` in your browser.
+
+### Running the Demo
+1. Initialize the demo data:
+   ```bash
+   python3 setup_demo_data.py
+   ```
+2. Run the risk screening pipeline:
+   ```bash
+   python3 main.py
+   ```
 
 ---
 
-## 📈 Interpretation of Scores
+## 📈 Interpretation of Risk Scores
 
-- **0–40 (Low Risk)**: Healthy cash conversion, strong working capital management, and no major governance red flags.
-- **41–70 (Medium Risk)**: Operational or accounting concerns (e.g., CFO lagging Net Income) requiring follow-up diligence.
-- **71–100 (High Risk)**: Significant red flags in earnings quality, governance issues, or aggressive accounting practices.
-
----
-
-## 🛡 Limitations & Scope
-
-This tool is a screening and prioritization aid. It does not replace professional financial due diligence, audits, or valuation models (DCF/LBO). For a detailed breakdown of system boundaries, please refer to [LIMITATIONS.md](LIMITATIONS.md).
+*   **Score < 30 (Low Risk)**: Clean financials; standard due diligence recommended.
+*   **Score 30-60 (Medium Risk)**: Minor discrepancies in cash flow or working capital.
+*   **Score > 60 (High Risk)**: Significant red flags; forensic audit mandatory before IC submission.
 
 ---
 
-## ⚖️ License
+## 🛡 License & Disclaimer
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. It is designed as a screening tool and should not replace a full Quality of Earnings (QoE) report by a certified accounting firm.
