@@ -6,10 +6,12 @@ class RiskDetector:
     NLP engine for detecting forensic accounting and governance red flags.
     """
     RED_FLAGS = {
-        "Auditor Resignation": re.compile(r"(?i)auditor\s+(?:resigned|resignation|terminated|withdrawn)"),
-        "Going Concern": re.compile(r"(?i)going\s+concern\s+uncertainty"),
-        "Restatement": re.compile(r"(?i)restatement\s+of\s+financial\s+statements"),
-        "Material Weakness": re.compile(r"(?i)material\s+weakness\s+in\s+internal\s+control")
+        "Auditor Resignation": re.compile(r"(?i)auditor\s+(?:resigned|resignation|terminated|withdrawn|disagreement)"),
+        "Going Concern": re.compile(r"(?i)going\s+concern\s+(?:uncertainty|doubt|risk)"),
+        "Restatement": re.compile(r"(?i)(?:restatement|correction|error)\s+of\s+financial\s+statements"),
+        "Material Weakness": re.compile(r"(?i)material\s+weakness\s+in\s+internal\s+control"),
+        "Revenue Recognition": re.compile(r"(?i)revenue\s+recognition\s+(?:issue|dispute|irregularity)"),
+        "Related Party": re.compile(r"(?i)related\s+party\s+transaction\s+(?:undisclosed|excessive)")
     }
 
     NEGATIONS = [

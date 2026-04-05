@@ -1,0 +1,33 @@
+
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background: #f4f7f6; }
+            .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+            .high-risk { border-left: 10px solid #e74c3c; }
+            .medium-risk { border-left: 10px solid #f39c12; }
+            .low-risk { border-left: 10px solid #2ecc71; }
+            h1 { color: #2c3e50; }
+            .score { font-size: 24px; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <h1>PE Portfolio Risk Summary</h1>
+        
+            <div class="card low-risk">
+                <h2>SafeCo - Low Risk</h2>
+                <div class="score">Risk Score: 14.0/100</div>
+                <p>Breakdown: EQ: 20, WC: 20, NLP: 0.0</p>
+                <ul></ul>
+            </div>
+            
+            <div class="card high-risk">
+                <h2>RiskCo - High Risk</h2>
+                <div class="score">Risk Score: 90.0/100</div>
+                <p>Breakdown: EQ: 100, WC: 80, NLP: 80.0</p>
+                <ul><li>Auditor Resignation</li><li>Going Concern</li></ul>
+            </div>
+            
+    </body>
+    </html>
+    
