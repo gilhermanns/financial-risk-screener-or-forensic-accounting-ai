@@ -2,7 +2,7 @@ from ..models import FinancialData, Metric, ScoringResult
 
 class PEScoringEngine:
     """
-    PE-grade scoring engine focusing on Earnings Quality and Working Capital.
+    Analyst-grade scoring engine focusing on Earnings Quality and Working Capital.
     """
     def __init__(self, config: dict):
         self.config = config.get("sectors", {}).get("default", {})
