@@ -62,3 +62,7 @@ Converts analysis results into a structured **HTML Risk Report** with severity l
 ## License & Disclaimer
 
 This project is licensed under the MIT License. It is designed as a screening tool and should not replace professional audit or due diligence procedures.
+
+---
+
+*Entwickelt mit Unterstützung von Claude Code (Anthropic).*
